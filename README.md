@@ -1,161 +1,169 @@
-AWS Static Website Hosting using Amazon S3 and CloudFront
+🌐 AWS Static Website Hosting (Amazon S3 + CloudFront)
 
-📖 Project Description
+📌 Overview
 
 This project demonstrates how to deploy a static website using Amazon Web Services (AWS).
-The website is hosted using **Amazon S3 (Simple Storage Service)** and delivered securely over the internet using **AWS CloudFront CDN** with HTTPS support.
+The website is hosted using **Amazon S3** and delivered securely using **AWS CloudFront CDN** over HTTPS.
 
-The application contains only static content such as HTML, CSS, JavaScript, and images. No backend server or database is required.
+The website contains only static files (HTML, CSS, JavaScript, Images) and does not require a backend server or database.
 
 ---
 
-🎯 Objectives
+🧱 Architecture
 
-* Understand cloud-based website hosting
-* Learn Amazon S3 static website hosting
-* Configure public access permissions
-* Implement CDN using CloudFront
-* Enable secure HTTPS access
-* Maintain project using Git and GitHub
+User Browser → CloudFront (CDN + HTTPS) → Amazon S3 Bucket → Website Files
+
+CloudFront caches the website globally and securely serves content to users while the S3 bucket stores the actual files.
 
 ---
 
 🛠️ Technologies Used
 
-* HTML5
-* CSS3
-* JavaScript
-* Amazon S3
-* AWS CloudFront
-* AWS IAM Policies
-* Git
-* GitHub
+| Category         | Technology              |
+| ---------------- | ----------------------- |
+| Frontend         | HTML5, CSS3, JavaScript |
+| Cloud Storage    | Amazon S3               |
+| Content Delivery | AWS CloudFront          |
+| Security         | HTTPS, Bucket Policy    |
+| Version Control  | Git & GitHub            |
 
 ---
 
-⚙️ AWS Services Used
+🚀 Deployment Steps
 
-1. Amazon S3
+1️⃣ Create S3 Bucket
 
-Amazon S3 is used to store and host the website files.
-The S3 bucket acts as a web server for static content.
+* Created an S3 bucket in AWS Console
+* Selected region (ap-south-1)
+* Disabled **Block Public Access**
 
-2. AWS CloudFront
+2️⃣ Upload Website Files
 
-CloudFront is a Content Delivery Network (CDN) that distributes website content globally and provides HTTPS secure access.
+* Uploaded HTML, CSS, JS and images
+* Verified file structure
 
-3. AWS IAM
+3️⃣ Enable Static Website Hosting
 
-IAM policies are used to allow public read access to the S3 bucket objects.
+* Enabled "Use this bucket to host a website"
+* Set:
+
+  * Index document → `index.html`
+  * Error document → `error.html`
+
+4️⃣ Configure Bucket Policy
+
+Added public read access policy:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*"
+    }
+  ]
+}
+```
+
+5️⃣ Create CloudFront Distribution
+
+* Origin: S3 static website endpoint
+* Viewer protocol: Redirect HTTP to HTTPS
+* Enabled caching
+
+6️⃣ Access Website
+
+* Website accessed using CloudFront HTTPS URL
 
 ---
 
-🚀 Deployment Procedure
+🌍 Live Website
 
-1. Created an S3 bucket in AWS
-2. Disabled "Block Public Access"
-3. Uploaded website files (index.html, CSS, JS, images)
-4. Enabled Static Website Hosting
-5. Set index document as `index.html`
-6. Added bucket policy to allow public read access
-7. Generated website endpoint
-8. Created CloudFront distribution
-9. Linked CloudFront to S3 website endpoint
-10. Accessed website using HTTPS URL
+**CloudFront URL:**
+Paste your link here
+
+Example:
+[https://.cloudfront.net](dt7o47zvx0o4o.cloudfront.net)
 
 ---
 
-🌐 Live Website Link
+📂 Project Structure
 
-CloudFront URL:
-
-(Example: [http//:cloudfront.net](dt7o47zvx0o4o.cloudfront.net))
-
----
-
-📂 Project Folder Structure
-
+```
 aws-static-website/
 │
 ├── index.html
 ├── style.css
 ├── script.js
 ├── images/
+│   ├── image1.jpg
+│   ├── image2.jpg
+│
 ├── screenshots/
 │   ├── s3-bucket.png
 │   ├── static-hosting.png
 │   ├── bucket-policy.png
-│   ├── cloudfront-distribution.png
-│   └── https-website.png
+│   ├── cloudfront.png
+│   └── https-site.png
+│
 └── README.md
+```
+
+---
+
+🔐 Security Features
+
+* Public read-only access configured
+* HTTPS enabled via CloudFront
+* Direct S3 access restricted to objects only
+* No server-side vulnerability
+
+---
+
+⚡ Advantages
+
+* Serverless hosting (no EC2 instance required)
+* Low cost
+* Highly scalable
+* Global CDN caching
+* Fast loading
+* Secure HTTPS browsing
 
 ---
 
 📸 Screenshots
 
-All AWS configuration screenshots are available in the **screenshots** folder, including:
+Include screenshots showing:
 
 * S3 bucket objects
-* Static website hosting configuration
-* Bucket policy permissions
+* Static hosting configuration
+* Bucket policy
 * CloudFront distribution
 * Website running with HTTPS
 
 ---
 
-🔐 Security Configuration
-
-A bucket policy was added to allow public read access:
-
-{
-"Version": "2012-10-17",
-"Statement": [
-{
-"Sid": "PublicReadGetObject",
-"Effect": "Allow",
-"Principal": "*",
-"Action": "s3:GetObject",
-"Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*"
-}
-]
-}
-
----
-
-📊 Advantages of This Architecture
-
-* Serverless hosting (no EC2 required)
-* Highly scalable
-* Low cost
-* High availability
-* Fast loading via CDN
-* Secure HTTPS connection
-
----
-
 🎓 Learning Outcomes
 
-* Learned how cloud storage can act as a web server
-* Understood the difference between static and dynamic websites
-* Gained experience with AWS S3 and CloudFront
-* Implemented public access policies
-* Used GitHub for version control
+* Understanding of static website hosting
+* Working with AWS S3 storage
+* CloudFront CDN implementation
+* Access policies and permissions
+* GitHub project management
 
 ---
 
 👤 Author
 
->Abhiram
-GitHub: [(https://github.com/abhiram4748)]
+Abhiram
+GitHub: [https://github.com/abhiram4748](https://github.com/abhiram4748)
 
 ---
 
-📌 Conclusion
+📄 Conclusion
 
-This project successfully demonstrates hosting a static website using AWS S3 and delivering it securely through CloudFront CDN. It shows how cloud services can replace traditional web hosting servers for static applications.
-
----
-
-📄 Note
-
-This project was developed as an academic minor project for learning cloud computing and deployment concepts.
+This project demonstrates a complete cloud-based deployment pipeline where a static website is hosted on AWS S3 and securely delivered using CloudFront CDN, eliminating the need for traditional web hosting servers.
