@@ -104,7 +104,7 @@ The website is accessed securely via the CloudFront HTTPS URL.
 (Paste your CloudFront link here)
 
 Example:
-https://dxxxxxxxxxxxxx.cloudfront.net
+https://dt7o47zvx0o4o.cloudfront.net/
 
 ---
 
